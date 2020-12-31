@@ -456,6 +456,10 @@ grub_password_get (char buf[], unsigned buf_size)
   unsigned cur_len = 0;
   int key;
 
+  if (!buf)
+    /* want prompt */
+    return 1;
+
   while (1)
     {
       key = grub_getkey (); 

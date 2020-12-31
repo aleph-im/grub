@@ -112,6 +112,9 @@ struct grub_cryptodisk
 };
 typedef struct grub_cryptodisk *grub_cryptodisk_t;
 
+/* must match prototype for grub_password_get */
+typedef int (grub_passwd_cb)(char buf[], unsigned buf_size);
+
 struct grub_cryptodisk_dev
 {
   struct grub_cryptodisk_dev *next;
@@ -119,7 +122,8 @@ struct grub_cryptodisk_dev
 
   grub_cryptodisk_t (*scan) (grub_disk_t disk, const char *check_uuid,
 			     int boot_only);
-  grub_err_t (*recover_key) (grub_disk_t disk, grub_cryptodisk_t dev);
+  grub_err_t (*recover_key) (grub_disk_t disk, grub_cryptodisk_t dev,
+			     grub_passwd_cb *get_password);
 };
 typedef struct grub_cryptodisk_dev *grub_cryptodisk_dev_t;
 

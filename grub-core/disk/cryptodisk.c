@@ -1011,7 +1011,7 @@ grub_cryptodisk_scan_device_real (const char *name, grub_disk_t source)
     if (!dev)
       continue;
     
-    err = cr->recover_key (source, dev);
+    err = cr->recover_key (source, dev, grub_password_get);
     if (err)
     {
       cryptodisk_close (dev);
